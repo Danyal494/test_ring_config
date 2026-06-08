@@ -598,7 +598,7 @@ export function BaseRing({
           <>
             <DiamondByType
               diamondType={diamondType}
-              orientationZ={orientationZ}
+              orientationZ={0}
               caratSize={visualCarat}
               xOffset={0}
               prongCount="Classic"
@@ -625,7 +625,7 @@ export function BaseRing({
             {/* Center stone — no offset, always origin */}
             <DiamondByType
               diamondType={diamondType}
-              orientationZ={orientationZ}
+               orientationZ={0}
               caratSize={visualCarat}
               xOffset={THREE_CENTER_OFFSET}
               prongCount="Classic"
