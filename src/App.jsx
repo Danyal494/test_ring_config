@@ -7,7 +7,7 @@ import CircularRingScene from "./Components/Enviorment/Scene";
 
 function App() {
   const [circularFrameColor, setCircularFrameColor] = useState("#f2f3f7");
-  const [circularBandWidth,  setCircularBandWidth]  = useState(4);
+  const [circularBandWidth,  setCircularBandWidth]  = useState(3.1);
   const [circularRingSize,   setCircularRingSize]   = useState(1.5);
   const [dCaratSize,         setDCaratSize]         = useState(1);
   const [basket,             setBasket]             = useState("None");

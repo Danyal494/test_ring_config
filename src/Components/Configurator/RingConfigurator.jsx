@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 function autoSideCarat(centerCarat) {
@@ -152,15 +152,31 @@ function ChipGrid({ options, activeId, onSelect, cols = 2, autoFit = false }) {
 }
 
 function RangeField({ title, subtitle, value, min, max, step, onChange, formatValue = (v) => v }) {
+  const [localValue, setLocalValue] = useState(value);
+
+  // Keep local in sync if parent value changes externally
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
   return (
     <div className="mt-2">
       <div className="flex items-center justify-between mb-1">
         <p className="text-[13px] font-semibold text-[#191919]">{title}</p>
-        <span className="text-[12px] font-bold text-[#2b2d4b] bg-[#e8e8f0] px-2 py-0.5 rounded-md">{formatValue(value)}</span>
+        <span className="text-[12px] font-bold text-[#2b2d4b] bg-[#e8e8f0] px-2 py-0.5 rounded-md">
+          {formatValue(localValue)}
+        </span>
       </div>
       {subtitle && <p className="text-[11px] text-[#9f9f9f] mb-2">{subtitle}</p>}
-      <input type="range" min={min} max={max} step={step} value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={localValue}
+        onChange={(e) => setLocalValue(Number(e.target.value))}   // live display only
+        onMouseUp={(e) => onChange(Number(e.target.value))}        // fires on drag end (mouse)
+        onTouchEnd={(e) => onChange(Number(e.target.value))}       // fires on drag end (touch)
         className="w-full h-[4px] rounded-full appearance-none cursor-pointer"
         style={{ accentColor: "#2b2d4b", background: "#cfd3dc" }}
       />
