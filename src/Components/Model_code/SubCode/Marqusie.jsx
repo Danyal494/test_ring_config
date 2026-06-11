@@ -1,17 +1,25 @@
 import React from 'react'
 
-const Marquise = ({ nodes, materials, orientationZ, caratSize, basket, tipVisible, TransitionMaterial, metalProps, RefractionMaterial }) => {
-  const isNone       = !basket || basket === 'None'
-  const isBasket     = basket === 'Basket'
-  const isHiddenHalo = basket === 'HiddenHalo'
-  const isBezel      = basket === 'Bezel'
-  const isHalo       = basket === 'Halo'
+const Marquise= ({ nodes, materials, orientationZ, basket, tipVisible, TransitionMaterial,caratSize, metalProps, RefractionMaterial, prongTips }) => {
+const isNone       = !basket || basket === 'None'
+const isBasket     = basket === 'Basket'
+const isHiddenHalo = basket === 'HiddenHalo'
+const isBezel      = basket === 'Bezel'
+const isHalo       = basket === 'Halo'
 
-  const showCLP  = !isHalo             // None, Basket, HiddenHalo
-  const showCT   = isNone || isBasket || isHiddenHalo // None, Basket, HiddenHalo
-  const showSB   = isBasket || isHiddenHalo           // Basket, HiddenHalo
-  const showHHD  = isHiddenHalo                       // HiddenHalo only
-  const showHalo = isHalo                             // Halo only (MHB + MHD + MHCLP + MHCT)
+const showCLP   = !isHalo 
+const showTip   = isNone || isBasket || isHiddenHalo   // basket gate — any tip mesh requires this
+const showSB    = isBasket || isHiddenHalo
+const showBB    = isBezel
+const showBBCLP = isBezel
+const showHHD   = isHiddenHalo
+const showHalo  = isHalo
+
+// prongTip sub-rules — basket gate (showTip) AND prongTips value
+const showMCT  = showTip && prongTips === 'Claw'
+const showMRT  = showTip && prongTips === 'Rounded'
+const showMPCT = showTip && prongTips === 'PetiteClaw'
+const showMTT  = showTip && prongTips === 'Tab'
 
   const cx = 0.135
   const cy = 2.626
@@ -47,31 +55,70 @@ const Marquise = ({ nodes, materials, orientationZ, caratSize, basket, tipVisibl
               <RefractionMaterial />
             </mesh>
 
-            {/* None, Basket, HiddenHalo */}
-            {showCT && (
-              <mesh
+           {showMCT &&(
+   <mesh
                 name="MCT"
-                castShadow
-                receiveShadow
-                geometry={nodes.MCT.geometry}
-                position={[0.463, 2.986, -0.385]}
-                rotation={[-1.353, 0.511, -1.407]}
-                scale={12.631}
-              >
+          castShadow
+          receiveShadow
+          geometry={nodes.MCT.geometry}
+          material={materials['Material.012']}
+          position={[1.011, 2.988, 0.011]}
+          rotation={[-1.028, 0.105, -2.38]}
+          scale={12.513}
+                >
                 <TransitionMaterial {...metalProps} />
               </mesh>
-            )}
+)}
+           
+               
+       {showMPCT && (
+  <mesh
+      name="MPCT001"
+          castShadow
+          receiveShadow
+          geometry={nodes.MPCT001.geometry}
+          material={materials['Material.018']}
+          position={[-0.725, 2.994, 0.001]}
+          rotation={[-1.537, -0.332, 1.716]}
+          scale={13.83}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+     {showMRT && (
+  <mesh
+   name="MRT"
+          castShadow
+          receiveShadow
+          geometry={nodes.MRT.geometry}
+          material={materials['Material.014']}
+          position={[-0.259, 3.092, -0.422]}
+          rotation={[-2.213, -0.437, 0.679]}
+          scale={13.749}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+{showMTT && (
+<mesh
+        name="MTT"
+          castShadow
+          receiveShadow
+          geometry={nodes.MTT.geometry}
+          material={materials['Material.013']}
+          position={[-0.254, 3.129, -0.406]}
+          rotation={[-1.875, -0.199, 0.735]}
+          scale={13.778}
+      ><TransitionMaterial {...metalProps} /></mesh>
+)}
 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (
               <mesh
                 name="MCLP"
-                castShadow
-                receiveShadow
-                geometry={nodes.MCLP.geometry}
-                position={[0.134, 2.701, 0.01]}
-                rotation={[0, 0.778, -Math.PI / 2]}
-                scale={0.153}
+          castShadow
+          receiveShadow
+          geometry={nodes.MCLP.geometry}
+          material={nodes.MCLP.material}
+          position={[0.134, 2.701, 0.01]}
+          rotation={[-Math.PI, 1.275, Math.PI / 2]}
+          scale={0.153}
               >
                 <TransitionMaterial {...metalProps} />
               </mesh>

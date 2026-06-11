@@ -21,7 +21,7 @@ function App() {
   const [paveStyle,          setPaveStyle]          = useState("None");
   const [orientation,        setOrientation]        = useState("Classic");
   const [bandFit,            setBandFit]            = useState("StandardFit");
-
+const [paveLength, setPaveLength] = useState("Half");
   // Multi-stone state
   const [stoneCount,        setStoneCount]        = useState("OneStone");
   const [rightDiamondType,  setRightDiamondType]  = useState("RoundDiamond");
@@ -33,6 +33,11 @@ function App() {
 
   // Multi-stone always uses Classic prong
   const effectiveProngCount = (stoneCount !== "OneStone") ? "Classic" : prongCount;
+  
+  const [cathedral, setCathedral] = useState("None");
+
+// Pass to both Configurator and Scene:
+
 
   return (
     <>
@@ -60,6 +65,8 @@ function App() {
         // per-stone carats
         rightCaratSize={rightCaratSize}   setRightCaratSize={setRightCaratSize}
         sideCaratSize={sideCaratSize}     setSideCaratSize={setSideCaratSize}
+        cathedral={cathedral}  setCathedral={setCathedral}
+        paveLength={paveLength}           setPaveLength={setPaveLength} 
       />
 
       <CircularRingScene
@@ -85,6 +92,8 @@ function App() {
         // per-stone carats
         rightCaratSize={rightCaratSize}
         sideCaratSize={sideCaratSize}
+        cathedral={cathedral} 
+        paveLength={paveLength}
       />
     </>
   );

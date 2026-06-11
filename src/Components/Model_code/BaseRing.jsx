@@ -4,6 +4,8 @@ import { useThree } from '@react-three/fiber'
 import DiamondByType from './StoneLogic/DiamondByType'
 import ThreeStone    from './StoneLogic/ThreeStone'
 import TwoStone      from './StoneLogic/TwoStone'
+import PaveLength from './SubCode/PaveLength'
+import { CathedralArm, CathedralPair } from './StoneLogic/Cathedral'
 
 const BW_DEFAULT = 2.7
 
@@ -94,12 +96,16 @@ export function BaseRing({
   sideDiamondType  = 'RoundDiamond',
   rightCaratSize   = 1.2,
   sideCaratSize    = 1.0,
+  cathedral = 'None',
+  paveStyle  = 'None',
+paveLength = 'Half',
   ...props
+  
 }) {
   const bandComfort = bandComfortProp ?? bandFit ?? 'standard'
 
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/Ring Update REV6.glb')
+  const { nodes, materials, animations } = useGLTF('/TEST1.glb')
   const { actions } = useAnimations(animations, group)
   const { scene }   = useThree()
   const [envMap, setEnvMap] = useState(scene.environment)
@@ -145,6 +151,8 @@ export function BaseRing({
   const showRounded    = prongTips === 'Rounded'
   const showClaw       = prongTips === 'Claw'
   const showPetiteClaw = prongTips === 'PetiteClaw'
+const showCathedral         = cathedral === 'Cathedral'
+const isCathedralThreeStone = showCathedral && isThreeStone
 
   const tipVisible = (name) => {
     const n = name.toLowerCase()
@@ -170,11 +178,12 @@ export function BaseRing({
 
   const isComfortBand      = bandComfort === 'comfort'
   const showStandardSquare = bandShape === 'square' && !isComfortBand
+  const showStandardCircle = bandShape === 'circle' && !isComfortBand
 
   const sharedDiamondProps = {
     nodes, materials, metalProps, basket, tipVisible,
     TransitionMaterial, RefractionMaterial: RefractionMat,
-    prongCount, prongTips, envMap,
+    prongCount, prongTips, envMap,  cathedral,
   }
 
   const effectiveProng = (isTwoStone || isThreeStone) ? 'Classic' : prongCount
@@ -191,18 +200,77 @@ export function BaseRing({
         {/* ── Band ── */}
         {showStandardSquare && (
           <mesh
-            name="Cylinder002"
-            castShadow receiveShadow
-            geometry={nodes.Cylinder002.geometry}
-            position={[0.134, 1.205, -0.014]}
-            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+              name="Squareband"
+          castShadow
+          receiveShadow
+          geometry={nodes.Squareband.geometry}
+          // material={materials['Material.026']}
+          position={[0.134, 1.205, -0.014]}
+          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+        
             scale={[0.138, 0.055 * bwRatio, 0.138]}
           >
             <TransitionMaterial {...metalProps} />
           </mesh>
         )}
+        {showStandardCircle && (
+          <mesh
+              name="Circleband"
+          castShadow
+          receiveShadow
+          geometry={nodes.Circleband.geometry}
+          material={nodes.Circleband.material}
+          position={[0.132, 1.2, -0.017]}
+          // rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+        
+            scale={[1.015* bwRatio,1.015, 1.015]}
+          >
+            <TransitionMaterial {...metalProps} />
+          </mesh>
+        )}
+        {/* {showCathedral && !isThreeStone && (
+  <mesh
+    name="Cathedral"
+    castShadow receiveShadow
+    geometry={nodes.Cathedral.geometry}
+    position={[0.128, 2.342, -0.546]}
+    rotation={[0.016, 1.571, 0]}
+    scale={[0.548, 0.548, 0.467]}
+  >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)} */}
+{/* <CathedralArm side="left" material={<TransitionMaterial {...metalProps} />} /> */}
 
-        {/* ══ ONE STONE ══ */}
+// After
+{/* {showCathedral && !isTwoStone && (
+  <CathedralPair material={<TransitionMaterial {...metalProps} />} />
+)} */}
+<PaveLength
+  nodes={nodes}
+  materials={materials}
+  paveStyle={paveStyle}
+  paveLength={paveLength}
+  TransitionMaterial={TransitionMaterial}
+  metalProps={metalProps}
+         {...sharedDiamondProps}
+/>
+
+
+{/* {showCathedral && isThreeStone && (
+  <mesh
+    name="CathedralThreeStone"
+    castShadow receiveShadow
+    geometry={nodes.CathedralThreeStone.geometry}   
+    position={[0.128, 2.342, -0.546]}           
+    rotation={[0.016, 1.571, 0]}
+    scale={[0.65, 0.65, 0.55]}                      
+  >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)} */}
+
+    
         {!isTwoStone && !isThreeStone && (
           <DiamondByType
             diamondType={diamondType}
@@ -225,10 +293,10 @@ export function BaseRing({
             rightCaratSize={rightCaratSize}
             sharedDiamondProps={sharedDiamondProps}
           />
-        )}
+        )} 
 
         {/* ══ THREE STONE ══ */}
-        {isThreeStone && (
+         {isThreeStone && (
           <ThreeStone
             diamondType={diamondType}
             sideDiamondType={sideDiamondType}
@@ -238,11 +306,11 @@ export function BaseRing({
             effectiveSideCarat={effectiveSideCarat}
             sharedDiamondProps={sharedDiamondProps}
           />
-        )}
+        )}  
 
       </group>
     </group>
   )
 }
 
-useGLTF.preload('/Ring Update REV6.glb')
+useGLTF.preload('/TEST1.glb')

@@ -1,17 +1,25 @@
 import React from 'react'
 
-const Pear = ({ nodes, materials, orientationZ, basket, caratSize, tipVisible, TransitionMaterial, metalProps, RefractionMaterial }) => {
-  const isNone       = !basket || basket === 'None'
-  const isBasket     = basket === 'Basket'
-  const isHiddenHalo = basket === 'HiddenHalo'
-  const isBezel      = basket === 'Bezel'
-  const isHalo       = basket === 'Halo'
+const Pear = ({ nodes, materials, orientationZ, basket, tipVisible, TransitionMaterial,caratSize, metalProps, RefractionMaterial, prongTips }) => {
+const isNone       = !basket || basket === 'None'
+const isBasket     = basket === 'Basket'
+const isHiddenHalo = basket === 'HiddenHalo'
+const isBezel      = basket === 'Bezel'
+const isHalo       = basket === 'Halo'
 
-  const showCLP  = !isHalo               // None, Basket, HiddenHalo
-  const showCT   = isNone || isBasket || isHiddenHalo // None, Basket, HiddenHalo
-  const showSB   = isBasket || isHiddenHalo           // Basket, HiddenHalo
-  const showHHD  = isHiddenHalo                       // HiddenHalo only
-  const showHalo = isHalo                             // Halo only (PEHB + PEHD + PEHCT + PEHCLP)
+const showCLP   = !isHalo 
+const showTip   = isNone || isBasket || isHiddenHalo   // basket gate — any tip mesh requires this
+const showSB    = isBasket || isHiddenHalo
+const showBB    = isBezel
+const showBBCLP = isBezel
+const showHHD   = isHiddenHalo
+const showHalo  = isHalo
+
+// prongTip sub-rules — basket gate (showTip) AND prongTips value
+const showPECT  = showTip && prongTips === 'Claw'
+const showPERT  = showTip && prongTips === 'Rounded'
+const showPEPCT = showTip && prongTips === 'PetiteClaw'
+const showPETT  = showTip && prongTips === 'Tab'
 
   const cx = 0.135
   const cy = 2.626
@@ -50,43 +58,80 @@ const Pear = ({ nodes, materials, orientationZ, basket, caratSize, tipVisible, T
             {/* None, Basket, HiddenHalo */}
             {showCLP && (
               <mesh
-                name="PECLP"
-                castShadow
-                receiveShadow
-                geometry={nodes.PECLP.geometry}
-                position={[0.082, 2.701, 0.101]}
-                rotation={[Math.PI, -1.469, Math.PI / 2]}
-                scale={0.153}
+               name="PECLP"
+          castShadow
+          receiveShadow
+          geometry={nodes.PECLP.geometry}
+          material={nodes.PECLP.material}
+          position={[0.082, 2.701, 0.101]}
+          rotation={[Math.PI, -1.469, Math.PI / 2]}
+          scale={0.153}
               >
                 <TransitionMaterial {...metalProps} />
               </mesh>
             )}
 
             {/* None, Basket, HiddenHalo */}
-            {showCT && (
-              <mesh
-                name="PECT"
-                castShadow
-                receiveShadow
-                geometry={nodes.PECT.geometry}
-                position={[0.879, 2.986, 0.033]}
-                rotation={[-1.047, 0.181, -2.251]}
-                scale={12.631}
-              >
+          {showPECT &&(
+   <mesh
+               name="PECT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PECT.geometry}
+          material={materials['Material.027']}
+          position={[0.879, 2.986, 0.033]}
+          rotation={[-1.047, 0.181, -2.251]}
+          scale={12.631}
+                >
                 <TransitionMaterial {...metalProps} />
               </mesh>
-            )}
+)}
+           
+               
+       {/* {showPEPCT && (
+  <mesh
+    name="APCT"
+    castShadow receiveShadow
+    geometry={nodes.APCT.geometry}
+    position={[-0.264, 3.117, -0.416]}
+    rotation={[-2.086, -0.316, 0.64]}
+    scale={14.346}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+     {showPERT && (
+  <mesh
+    name="ART"
+    castShadow receiveShadow
+    geometry={nodes.ART.geometry}
+    position={[-0.259, 3.092, -0.422]}
+    rotation={[-2.213, -0.437, 0.679]}
+    scale={13.749}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+{showPETT && (
+<mesh
+          name="ATT"
+          castShadow
+          receiveShadow
+          geometry={nodes.ATT.geometry}
+          // material={materials['Material.010']}
+          position={[-0.254, 3.129, -0.406]}
+          rotation={[-1.875, -0.199, 0.735]}
+          scale={13.778}
+      ><TransitionMaterial {...metalProps} /></mesh>
+)} */}
 
             {/* Basket, HiddenHalo */}
             {showSB && (
               <mesh
                 name="PESB"
-                castShadow
-                receiveShadow
-                geometry={nodes.PESB.geometry}
-                position={[-0.031, 2.711, 0.294]}
-                rotation={[0.836, 1.034, -0.125]}
-                scale={[0.097, 0.119, 0.118]}
+          castShadow
+          receiveShadow
+          geometry={nodes.PESB.geometry}
+          material={nodes.PESB.material}
+          position={[-0.031, 2.711, 0.294]}
+          rotation={[0.836, 1.034, -0.125]}
+          scale={[0.097, 0.119, 0.118]}
               >
                 <TransitionMaterial {...metalProps} />
               </mesh>
@@ -96,23 +141,25 @@ const Pear = ({ nodes, materials, orientationZ, basket, caratSize, tipVisible, T
             {showHHD && (
               <group
                 name="PEHHD"
-                position={[-0.326, 2.703, -0.132]}
-                rotation={[-1.605, -0.591, 1.51]}
-                scale={11.171}
+          position={[-0.326, 2.703, -0.132]}
+          rotation={[-1.605, -0.591, 1.51]}
+          scale={11.171}
               >
                 <mesh
-                  name="Diamondmesh434232"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Diamondmesh434232.geometry}
+               name="Diamondmesh434232"
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434232.geometry}
+            material={materials['Diamond.014']}
                 >
                   <RefractionMaterial />
                 </mesh>
                 <mesh
-                  name="Diamondmesh434232_1"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Diamondmesh434232_1.geometry}
+                   name="Diamondmesh434232_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434232_1.geometry}
+            material={materials['Metal.014']}
                 >
                   <TransitionMaterial {...metalProps} />
                 </mesh>
@@ -122,12 +169,13 @@ const Pear = ({ nodes, materials, orientationZ, basket, caratSize, tipVisible, T
             {/* Bezel only */}
             {isBezel && (
               <mesh
-                name="PEBB"
-                castShadow
-                receiveShadow
-                geometry={nodes.PEBB.geometry}
-                position={[0.126, 2.901, 0.018]}
-                scale={0.604}
+                 name="PEBB"
+          castShadow
+          receiveShadow
+          geometry={nodes.PEBB.geometry}
+          material={nodes.PEBB.material}
+          position={[0.126, 2.901, 0.018]}
+          scale={0.604}
               >
                 <TransitionMaterial {...metalProps} />
               </mesh>
@@ -138,61 +186,64 @@ const Pear = ({ nodes, materials, orientationZ, basket, caratSize, tipVisible, T
               <>
                 <mesh
                   name="PEHB"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.PEHB.geometry}
-                  position={[0.14, 2.848, 0.01]}
-                  scale={[0.817, 0.633, 0.817]}
+          castShadow
+          receiveShadow
+          geometry={nodes.PEHB.geometry}
+          material={nodes.PEHB.material}
+          position={[0.14, 2.848, 0.01]}
+          scale={[0.817, 0.633, 0.817]}
                 >
                   <TransitionMaterial {...metalProps} />
                 </mesh>
 
                 <group
-                  name="PEHD"
-                  position={[0.122, 3.007, 0.512]}
-                  rotation={[Math.PI / 2, 1.309, Math.PI / 2]}
-                  scale={[11.226, 13.281, 10.355]}
+                   name="PEHD"
+          position={[0.122, 3.007, 0.512]}
+          rotation={[Math.PI / 2, 1.309, Math.PI / 2]}
+          scale={[11.226, 13.281, 10.355]}
                 >
                   <mesh
                     name="Diamondmesh434240"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Diamondmesh434240.geometry}
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434240.geometry}
+            material={materials['Diamond.019']}
                   >
                     <RefractionMaterial />
                   </mesh>
                   <mesh
                     name="Diamondmesh434240_1"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Diamondmesh434240_1.geometry}
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434240_1.geometry}
+            material={materials['Metal.019']}
                   >
                     <TransitionMaterial {...metalProps} />
                   </mesh>
                 </group>
 
                 <mesh
-                  name="PEHCT"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.PEHCT.geometry}
-                  morphTargetDictionary={nodes.PEHCT.morphTargetDictionary}
-                  morphTargetInfluences={nodes.PEHCT.morphTargetInfluences}
-                  position={[-0.378, 2.985, 0.327]}
-                  rotation={[-1.974, -0.388, 1.315]}
-                  scale={12.631}
+                    name="PEHCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PEHCT.geometry}
+          material={materials['Material.021']}
+          position={[0.88, 2.987, 0.032]}
+          rotation={[-1.047, 0.181, -2.251]}
+          scale={12.631}
                 >
                   <TransitionMaterial {...metalProps} />
                 </mesh>
 
                 <mesh
                   name="PEHCLP"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.PEHCLP.geometry}
-                  position={[0.365, 2.701, 0.045]}
-                  rotation={[0, 1.014, -Math.PI / 2]}
-                  scale={0.153}
+          castShadow
+          receiveShadow
+          geometry={nodes.PEHCLP.geometry}
+          material={nodes.PEHCLP.material}
+          position={[0.365, 2.701, 0.045]}
+          rotation={[0, 1.014, -Math.PI / 2]}
+          scale={0.153}
                 >
                   <TransitionMaterial {...metalProps} />
                 </mesh>

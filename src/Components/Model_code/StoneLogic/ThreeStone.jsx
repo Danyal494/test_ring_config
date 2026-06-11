@@ -9,21 +9,21 @@ const THREE_OFFSET_LEFT = {
   0.2: { x:  0.00, y:  0.16, z: -0.59 },
   0.5: { x:  0.00, y:  0.14, z: -0.49 },
   1.0: { x:  0.00, y:  0.09, z: -0.46 },
-  1.5: { x:  0.00, y: -0.03, z:  0.19 },
+  1.5: { x:  0.00, y:0.14, z: 0.49 },
 }
 
 const THREE_ROTATION_LEFT = {
   0.2: { rx:  0.47 },
   0.5: { rx:  0.47 },
   1.0: { rx:  0.47 },
-  1.5: { rx: -0.41 },
+  1.5: { rx: -0.56 },
 }
 
 const THREE_OFFSET_RIGHT = {
   0.2: { x:  0.00, y: 0.11, z: 0.45 },
   0.5: { x:  0.00, y:  0.09, z:  0.37 },
   1.0: { x:  0.00, y:  0.06, z:  0.34 },
-  1.5: { x:  0.00, y:  0.22, z: -0.67 },
+  1.5: { x:  0.00, y:  0.12, z:-0.56 },
 }
 
 const THREE_ROTATION_RIGHT = {
@@ -140,13 +140,13 @@ export default function ThreeStone({
 
   return (
     <>
-       {/* leva control
+   
       <ThreeStoneLevaPanel
         key={`th-${caratSize}-${effectiveSideCarat.toFixed(3)}`}
         caratSize={caratSize}
         sideCaratSize={effectiveSideCarat}
         onUpdate={setTransforms}
-      /> */}
+      />
 
   
       <DiamondByType
