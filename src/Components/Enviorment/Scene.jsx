@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { BaseRing } from "../Model_code/BaseRing";
+import { Model } from "../Model_code/DiamondTest";
 
 export default function CircularRingScene({
   metalColor       = "#f2f3f7",
@@ -26,6 +27,9 @@ export default function CircularRingScene({
   // per-stone carats
   rightCaratSize   = 1.2,
   sideCaratSize    = 1.0,
+paveLength = "Half",
+  cathedral        = "None", 
+    
 }) {
   return (
     <Canvas
@@ -39,6 +43,8 @@ export default function CircularRingScene({
         powerPreference: "high-performance",
       }}
     >
+      {/* #efefef */}
+       {/* 2C2D2D */}
       <color attach="background" args={["#efefef"]} />
       <Environment files="/newhdri.hdr" environmentIntensity={1.0} />
 
@@ -62,12 +68,16 @@ export default function CircularRingScene({
           bandFit={bandFit === "ComfortFit" ? "comfort" : "standard"}
           // multi-stone
           stoneCount={stoneCount}
+           cathedral={cathedral}   
           rightDiamondType={rightDiamondType}
           sideDiamondType={sideDiamondType}
           // per-stone carats
           rightCaratSize={rightCaratSize}
           sideCaratSize={sideCaratSize}
+          paveStyle={paveStyle}
+paveLength={paveLength}
         />
+        {/* <Model/> */}
       </group>
 
       <OrbitControls

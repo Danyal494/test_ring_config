@@ -28,11 +28,12 @@ export default function DiamondByType({
   xOffset          = 0,
   offsetOverride   = null,
   rotationOverride = null,
+    cathedral = 'None',
 }) {
   const commonProps = {
     orientationZ, nodes, materials, prongCount, prongTips, basket,
     tipVisible, TransitionMaterial: TM, RefractionMaterial: RM,
-    metalProps, caratSize, envMap,
+    metalProps, caratSize, envMap,cathedral,
   }
 
   const inner = (() => {

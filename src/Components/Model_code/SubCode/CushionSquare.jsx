@@ -1,17 +1,25 @@
 import React from 'react'
 
-const CushionSquare = ({ nodes, materials, orientationZ, caratSize, basket, tipVisible, TransitionMaterial, metalProps, RefractionMaterial }) => {
-  const isNone       = !basket || basket === 'None'
-  const isBasket     = basket === 'Basket'
-  const isHiddenHalo = basket === 'HiddenHalo'
-  const isBezel      = basket === 'Bezel'
-  const isHalo       = basket === 'Halo'
+const CushionSquare = ({ nodes, materials, orientationZ, basket, tipVisible, TransitionMaterial,caratSize, metalProps, RefractionMaterial, prongTips }) => {
+const isNone       = !basket || basket === 'None'
+const isBasket     = basket === 'Basket'
+const isHiddenHalo = basket === 'HiddenHalo'
+const isBezel      = basket === 'Bezel'
+const isHalo       = basket === 'Halo'
 
-  const showCLP  = !isHalo             // None, Basket, HiddenHalo
-  const showCT   = isNone || isBasket || isHiddenHalo // None, Basket, HiddenHalo
-  const showSB   = isBasket || isHiddenHalo           // Basket, HiddenHalo
-  const showHHD  = isHiddenHalo                       // HiddenHalo only
-  const showHalo = isHalo                             // Halo only (CHCLP + CHB + CHCT)
+const showCLP   = !isHalo 
+const showTip   = isNone || isBasket || isHiddenHalo   // basket gate — any tip mesh requires this
+const showSB    = isBasket || isHiddenHalo
+const showBB    = isBezel
+const showBBCLP = isBezel
+const showHHD   = isHiddenHalo
+const showHalo  = isHalo
+
+// prongTip sub-rules — basket gate (showTip) AND prongTips value
+const showCCT  = showTip && prongTips === 'Claw'
+const showCRT  = showTip && prongTips === 'Rounded'
+const showCPCT = showTip && prongTips === 'PetiteClaw'
+const showCTT  = showTip && prongTips === 'Tab'
 
   const cx = 0.135
   const cy = 2.626
@@ -61,20 +69,59 @@ const CushionSquare = ({ nodes, materials, orientationZ, caratSize, basket, tipV
               </mesh>
             )}
 
+
+
             {/* None, Basket, HiddenHalo */}
-            {showCT && (
-              <mesh
+           {showCCT &&(
+   <mesh
                 name="CCT"
-                castShadow
-                receiveShadow
-                geometry={nodes.CCT.geometry}
-                position={[-0.287, 3.061, -0.414]}
-                rotation={[-1.945, -0.314, 0.645]}
-                scale={15.119}
-              >
+          castShadow
+          receiveShadow
+          geometry={nodes.CCT.geometry}
+          material={materials['Material.004']}
+          position={[-0.287, 3.061, -0.414]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={15.119}
+                >
                 <TransitionMaterial {...metalProps} />
               </mesh>
-            )}
+)}
+           
+               
+       {/* {showCPCT && (
+  <mesh
+    name="APCT"
+    castShadow receiveShadow
+    geometry={nodes.APCT.geometry}
+    position={[-0.264, 3.117, -0.416]}
+    rotation={[-2.086, -0.316, 0.64]}
+    scale={14.346}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+     {showCRT && (
+  <mesh
+    name="ART"
+    castShadow receiveShadow
+    geometry={nodes.ART.geometry}
+    position={[-0.259, 3.092, -0.422]}
+    rotation={[-2.213, -0.437, 0.679]}
+    scale={13.749}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+{showCTT && (
+<mesh
+          name="ATT"
+          castShadow
+          receiveShadow
+          geometry={nodes.ATT.geometry}
+          // material={materials['Material.010']}
+          position={[-0.254, 3.129, -0.406]}
+          rotation={[-1.875, -0.199, 0.735]}
+          scale={13.778}
+      ><TransitionMaterial {...metalProps} /></mesh>
+)} */}
+
+
 
             {/* Basket, HiddenHalo */}
             {showSB && (
@@ -138,60 +185,60 @@ const CushionSquare = ({ nodes, materials, orientationZ, caratSize, basket, tipV
                 
       <mesh
         name="CHCLP"
-        castShadow
-        receiveShadow
-        geometry={nodes.CHCLP.geometry}
-        material={nodes.CHCLP.material}
-        position={[0.137, 2.586, -0.103]}
-        rotation={[-Math.PI, 0.254, Math.PI / 2]}
-        scale={0.146}
+          castShadow
+          receiveShadow
+          geometry={nodes.CHCLP.geometry}
+          material={nodes.CHCLP.material}
+          position={[0.137, 2.586, -0.103]}
+          rotation={[-Math.PI, 0.254, Math.PI / 2]}
+          scale={0.146}
    >
  <TransitionMaterial {...metalProps} />
 </mesh>
       <mesh
-        name="CHB"
-        castShadow
-        receiveShadow
-        geometry={nodes.CHB.geometry}
-        material={nodes.CHB.material}
-        position={[0.124, 2.946, 0.023]}
-        scale={[0.561, 0.459, 0.551]}
+         name="CHB"
+          castShadow
+          receiveShadow
+          geometry={nodes.CHB.geometry}
+          material={nodes.CHB.material}
+          position={[0.124, 2.946, 0.023]}
+          scale={[0.561, 0.459, 0.551]}
    >
  <TransitionMaterial {...metalProps} />
 </mesh>
       <group
         name="CHD"
-        position={[0.571, 2.957, 0.468]}
-        rotation={[-2.796, -0.685, -2.912]}
-        scale={13.046}>
+          position={[-0.192, 2.965, -0.562]}
+          rotation={[-0.275, 0.269, 0.08]}
+          scale={15.661}>
         <mesh
-          name="Diamondmesh434200"
-          castShadow
-          receiveShadow
-          geometry={nodes.Diamondmesh434200.geometry}
-          material={materials['Diamond.018']}
+         name="Diamondmesh434160"
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434160.geometry}
+            material={materials['Diamond.018']}
      >
 <RefractionMaterial/>
 </mesh>
         <mesh
-          name="Diamondmesh434200_1"
-          castShadow
-          receiveShadow
-          geometry={nodes.Diamondmesh434200_1.geometry}
-          material={materials['Metal.018']}
+          name="Diamondmesh434160_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.Diamondmesh434160_1.geometry}
+            material={materials['Metal.018']}
      >
  <TransitionMaterial {...metalProps} />
 </mesh>
       </group>
       <mesh
-        name="CHCT"
-        castShadow
-        receiveShadow
-        geometry={nodes.CHCT.geometry}
-        material={materials['Material.016']}
-        position={[0.54, 3.122, 0.433]}
-        rotation={[-1.13, -0.539, 2.4]}
-        scale={17.94}
+       name="CHCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.CHCT.geometry}
+          material={materials['Material.016']}
+          position={[0.54, 3.122, 0.433]}
+          rotation={[-1.13, -0.539, 2.4]}
+          scale={17.94}
    >
  <TransitionMaterial {...metalProps} />
 </mesh>

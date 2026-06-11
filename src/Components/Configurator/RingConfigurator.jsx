@@ -77,7 +77,7 @@ const PRONG_TIPS     = [{ id: "Rounded", label: "Rounded" }, { id: "Claw", label
 const PRONG_PAVE     = [{ id: "None", label: "None" }, { id: "Pave", label: "Pave" }];
 const BAND_CATHEDRAL = [{ id: "None", label: "None" }, { id: "Cathedral", label: "Cathedral" }];
 const PAVE_STYLES    = [{ id: "None", label: "None" }, { id: "PetiteFrench", label: "Petite French" }];
-const PAVE_LENGTHS   = [{ id: "Half", label: "Half" }, { id: "OneThird", label: "One Third" }, { id: "Other", label: "Other" }];
+const PAVE_LENGTHS   = [{ id: "OneThird", label: "One Third" },{ id: "Half", label: "Half" }, { id: "TwoThird", label: "Two Third" },{ id: "ThreeQuarters", label: "Three Quarters" }, { id: "Eternity", label: "Eternity" }];
 const BAND_FIT       = [{ id: "ComfortFit", label: "Comfort Fit" }, { id: "StandardFit", label: "Standard Fit" }];
 
 const DIAMOND_OPTIONS = [
@@ -382,14 +382,16 @@ export default function CircularRingConfigurator({
   sideDiamondType: sideDiamondTypeProp,    setSideDiamondType: setSideDiamondTypeProp,
   rightCaratSize: rightCaratSizeProp,   setRightCaratSize: setRightCaratSizeProp,
   sideCaratSize: sideCaratSizeProp,     setSideCaratSize: setSideCaratSizeProp,
+  cathedral: cathedralProp,   setCathedral: setCathedralProp,
 }) {
   /* ── local fallbacks ── */
+  const [cathedralLocal, setCathedralLocal] = useState("None");
   const [stoneCountLocal,       setStoneCountLocal]       = useState("OneStone");
   const [diamondKind,           setDiamondKind]           = useState("Natural");
   const [prongCountLocal,       setProngCountLocal]       = useState(DEFAULT_PRONG_BY_DIAMOND[diamondType] ?? "Classic");
   const [surpriseStoneLocal,    setSurpriseStoneLocal]    = useState("None");
   const [prongPave,             setProngPave]             = useState("None");
-  const [cathedral,             setCathedral]             = useState("None");
+  // const [cathedral,             setCathedral]             = useState("None");
   const [bandFitLocal,          setBandFitLocal]          = useState("StandardFit");
   const [paveStyleLocal,        setPaveStyleLocal]        = useState("None");
   const [paveLengthLocal,       setPaveLengthLocal]       = useState("Half");
@@ -404,6 +406,8 @@ export default function CircularRingConfigurator({
   const [sideCaratLocal,        setSideCaratLocal]        = useState(0.2);
 
   /* ── resolve controlled vs local ── */
+  const cathedral    = cathedralProp    !== undefined ? cathedralProp    : cathedralLocal;
+const setCathedral = setCathedralProp !== undefined ? setCathedralProp : setCathedralLocal;
   const stoneCount       = stoneCountProp       !== undefined ? stoneCountProp       : stoneCountLocal;
   const setStoneCount    = setStoneCountProp    !== undefined ? setStoneCountProp    : setStoneCountLocal;
   const orientation      = orientationProp      !== undefined ? orientationProp      : orientationLocal;
