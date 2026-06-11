@@ -71,38 +71,42 @@ const showPTT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showPPCT && (
+      {showPPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+    name="PPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PPCT.geometry}
+          material={materials['Material.048']}
+          position={[-0.289, 3.016, 0.453]}
+          rotation={[-1.192, -0.232, 2.537]}
+          scale={16.049}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showPRT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+  name="PRT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PRT.geometry}
+          material={materials['Material.049']}
+          position={[-0.306, 2.97, 0.47]}
+          rotation={[-1.761, -0.912, 1.562]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showPTT && (
 <mesh
-          name="ATT"
+         name="PTT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.PTT.geometry}
+          material={materials['Material.050']}
+          position={[-0.306, 2.994, 0.47]}
+          rotation={[-1.279, -0.218, 2.502]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)}
 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (

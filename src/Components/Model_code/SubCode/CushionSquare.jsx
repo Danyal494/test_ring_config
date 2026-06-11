@@ -74,7 +74,7 @@ const showCTT  = showTip && prongTips === 'Tab'
             {/* None, Basket, HiddenHalo */}
            {showCCT &&(
    <mesh
-                name="CCT"
+             name="CCT"
           castShadow
           receiveShadow
           geometry={nodes.CCT.geometry}
@@ -88,38 +88,42 @@ const showCTT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showCPCT && (
+       {showCPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+   name="CPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.CPCT.geometry}
+          material={materials['Material.024']}
+          position={[-0.267, 3.125, -0.405]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showCRT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+    name="CRT"
+          castShadow
+          receiveShadow
+          geometry={nodes.CRT.geometry}
+          material={materials['Material.028']}
+          position={[-0.273, 3.069, -0.419]}
+          rotation={[-2.576, -0.028, 0.214]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showCTT && (
 <mesh
-          name="ATT"
+          name="CTT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.CTT.geometry}
+          material={materials['Material.035']}
+          position={[-0.284, 3.096, -0.423]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)} 
 
 
 

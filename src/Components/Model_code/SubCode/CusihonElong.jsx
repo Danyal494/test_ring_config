@@ -72,38 +72,42 @@ const effectiveOrientationZ = orientationZ - Math.PI / 2
 )}
            
                
-       {/* {showCEPCT && (
+    {showCEPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+    name="CEPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.CEPCT.geometry}
+          material={materials['Material.039']}
+          position={[-0.243, 3.057, -0.505]}
+          rotation={[-2.225, -0.447, 0.528]}
+          scale={15.631}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showCERT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+     name="CERT"
+          castShadow
+          receiveShadow
+          geometry={nodes.CERT.geometry}
+          material={materials['Material.038']}
+          position={[-0.236, 3.042, -0.49]}
+          rotation={[-2.606, 0.26, -0.247]}
+          scale={15.631}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showCETT && (
 <mesh
-          name="ATT"
+        name="CETT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.CETT.geometry}
+          material={materials['Material.037']}
+          position={[-0.243, 3.057, -0.505]}
+          rotation={[-2.225, -0.447, 0.528]}
+          scale={15.631}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)} 
 
             {/* None, Basket, HiddenHalo, Bezel */}
             {showCLP && (

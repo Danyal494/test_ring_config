@@ -57,7 +57,7 @@ const showMTT  = showTip && prongTips === 'Tab'
 
            {showMCT &&(
    <mesh
-                name="MCT"
+                 name="MCT"
           castShadow
           receiveShadow
           geometry={nodes.MCT.geometry}
@@ -73,10 +73,10 @@ const showMTT  = showTip && prongTips === 'Tab'
                
        {showMPCT && (
   <mesh
-      name="MPCT001"
+        name="MPCT"
           castShadow
           receiveShadow
-          geometry={nodes.MPCT001.geometry}
+          geometry={nodes.MPCT.geometry}
           material={materials['Material.018']}
           position={[-0.725, 2.994, 0.001]}
           rotation={[-1.537, -0.332, 1.716]}
@@ -85,13 +85,13 @@ const showMTT  = showTip && prongTips === 'Tab'
 )}
      {showMRT && (
   <mesh
-   name="MRT"
+ name="MRT"
           castShadow
           receiveShadow
           geometry={nodes.MRT.geometry}
           material={materials['Material.014']}
-          position={[-0.259, 3.092, -0.422]}
-          rotation={[-2.213, -0.437, 0.679]}
+          position={[0.083, 2.828, 0.02]}
+          rotation={[-2.406, -0.498, 0.627]}
           scale={13.749}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
@@ -102,9 +102,9 @@ const showMTT  = showTip && prongTips === 'Tab'
           receiveShadow
           geometry={nodes.MTT.geometry}
           material={materials['Material.013']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          position={[-0.726, 3.001, 0.009]}
+          rotation={[-1.553, -0.305, 1.594]}
+          scale={13.749}
       ><TransitionMaterial {...metalProps} /></mesh>
 )}
 

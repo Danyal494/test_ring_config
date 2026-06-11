@@ -70,38 +70,42 @@ const effectiveOrientationZ = orientationZ - Math.PI / 2
 )}
            
                
-       {/* {showREPCT && (
+     {showREPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+ name="REPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.REPCT.geometry}
+          material={materials['Material.054']}
+          position={[-0.236, 2.993, 0.474]}
+          rotation={[-1.323, -0.239, 2.413]}
+          scale={17.08}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showRERT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+     name="RERT"
+          castShadow
+          receiveShadow
+          geometry={nodes.RERT.geometry}
+          material={materials['Material.055']}
+          position={[-0.266, 2.952, 0.512]}
+          rotation={[-1.436, -1, 1.927]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showRETT && (
 <mesh
-          name="ATT"
+           name="RETT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.RETT.geometry}
+          material={materials['Material.056']}
+          position={[-0.251, 2.976, 0.494]}
+          rotation={[-1.419, -0.091, 2.565]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)}
             {/* None, Basket, HiddenHalo */}
             {showCLP && (
               <mesh

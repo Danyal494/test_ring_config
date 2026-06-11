@@ -70,38 +70,42 @@ const showRATT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showRAPCT && (
+       {showRAPCT && (
   <mesh
-    name="RAPCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+     name="RAPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.RAPCT.geometry}
+          material={materials['Material.051']}
+          position={[-0.299, 2.998, 0.461]}
+          rotation={[-1.168, -0.291, 2.551]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showRART && (
   <mesh
-    name="RART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+  name="RART"
+          castShadow
+          receiveShadow
+          geometry={nodes.RART.geometry}
+          material={materials['Material.052']}
+          position={[-0.31, 2.963, 0.473]}
+          rotation={[-1.417, -0.987, 1.985]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showRATT && (
 <mesh
-          name="RATT"
+            name="RATT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.RATT.geometry}
+          material={materials['Material.053']}
+          position={[-0.307, 2.986, 0.464]}
+          rotation={[-1.319, -0.228, 2.478]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)} 
 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (
