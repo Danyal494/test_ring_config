@@ -6,7 +6,7 @@ import { interpolateStone, stoneHalfWidth, TWO_STONE_GAP } from './Stoneutils'
 
 export { stoneHalfWidth, TWO_STONE_GAP }
 
-const RING_TOP_Y = 2.361
+const RING_TOP_Y = 2.55
 const BAND_CURVE_DROP = 0.22
 
 const TWO_TILT_LEFT = {
