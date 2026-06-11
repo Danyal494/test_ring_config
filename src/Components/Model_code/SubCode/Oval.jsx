@@ -73,38 +73,42 @@ const showOTT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showOPCT && (
+       {showOPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+   name="OPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.OPCT.geometry}
+          material={materials['Material.042']}
+          position={[-0.269, 2.989, -0.297]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showORT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+    name="ORT"
+          castShadow
+          receiveShadow
+          geometry={nodes.ORT.geometry}
+          material={materials['Material.043']}
+          position={[-0.28, 2.957, -0.307]}
+          rotation={[-2.576, -0.028, 0.214]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showOTT && (
 <mesh
-          name="ATT"
+       name="OTT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.OTT.geometry}
+          material={materials['Material.044']}
+          position={[-0.28, 2.957, -0.307]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)}
 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (

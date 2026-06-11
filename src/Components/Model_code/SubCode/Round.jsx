@@ -70,39 +70,42 @@ const showRTT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showRPCT && (
+      {showRPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+     name="RPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.RPCT.geometry}
+          material={materials['Material.057']}
+          position={[-0.326, 3.011, -0.404]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={16.428}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showRRT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
-    ><TransitionMaterial {...metalProps} /></mesh>
-)}
-{showATT && (
-<mesh
-          name="RTT"
+    name="RTT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.RTT.geometry}
+          material={materials['Material.059']}
+          position={[-0.334, 2.979, -0.413]}
+          rotation={[-1.79, -0.187, 0.627]}
+          scale={15.119}
+    ><TransitionMaterial {...metalProps} /></mesh>
+)}
+{showRTT && (
+<mesh
+         name="RRT"
+          castShadow
+          receiveShadow
+          geometry={nodes.RRT.geometry}
+          material={materials['Material.058']}
+          position={[-0.344, 2.965, -0.421]}
+          rotation={[-2.576, -0.028, 0.214]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
-
+)} 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (
               <mesh

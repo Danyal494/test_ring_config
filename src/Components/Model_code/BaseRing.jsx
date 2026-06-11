@@ -105,7 +105,7 @@ paveLength = 'Half',
   const bandComfort = bandComfortProp ?? bandFit ?? 'standard'
 
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/TEST1.glb')
+  const { nodes, materials, animations } = useGLTF('/TEST3.glb')
   const { actions } = useAnimations(animations, group)
   const { scene }   = useThree()
   const [envMap, setEnvMap] = useState(scene.environment)
@@ -251,9 +251,11 @@ const isCathedralThreeStone = showCathedral && isThreeStone
   materials={materials}
   paveStyle={paveStyle}
   paveLength={paveLength}
+  stoneCount={stoneCount}              // ← add this
   TransitionMaterial={TransitionMaterial}
+  RefractionMaterial={RefractionMat}
   metalProps={metalProps}
-         {...sharedDiamondProps}
+  showStandardSquare={showStandardSquare}
 />
 
 
@@ -313,4 +315,4 @@ const isCathedralThreeStone = showCathedral && isThreeStone
   )
 }
 
-useGLTF.preload('/TEST1.glb')
+useGLTF.preload('/TEST3.glb')

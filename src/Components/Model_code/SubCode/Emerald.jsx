@@ -72,38 +72,42 @@ const effectiveOrientationZ = orientationZ - Math.PI / 2
 )}
            
                
-       {/* {showEPCT && (
+      {showEPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+  name="EPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.EPCT.geometry}
+          material={materials['Material.017']}
+          position={[-0.259, 3.063, -0.561]}
+          rotation={[-2.051, -0.398, 0.598]}
+          scale={18.486}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showERT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+     name="ERT"
+          castShadow
+          receiveShadow
+          geometry={nodes.ERT.geometry}
+          material={materials['Material.040']}
+          position={[-0.255, 3.055, -0.555]}
+          rotation={[-2.678, -0.103, 0.082]}
+          scale={17.068}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showETT && (
 <mesh
-          name="ATT"
+        name="ETT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.ETT.geometry}
+          material={materials['Material.041']}
+          position={[-0.255, 3.094, -0.559]}
+          rotation={[-1.945, -0.314, 0.645]}
+          scale={16.477}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)} 
 
             {/* None, Basket, HiddenHalo */}
             {showCLP && (

@@ -88,38 +88,42 @@ const showPETT  = showTip && prongTips === 'Tab'
 )}
            
                
-       {/* {showPEPCT && (
+  {showPEPCT && (
   <mesh
-    name="APCT"
-    castShadow receiveShadow
-    geometry={nodes.APCT.geometry}
-    position={[-0.264, 3.117, -0.416]}
-    rotation={[-2.086, -0.316, 0.64]}
-    scale={14.346}
+  name="PEPCT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PEPCT.geometry}
+          material={materials['Material.045']}
+          position={[0.868, 2.999, 0.042]}
+          rotation={[-1.627, 0.376, -1.289]}
+          scale={14.617}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
      {showPERT && (
   <mesh
-    name="ART"
-    castShadow receiveShadow
-    geometry={nodes.ART.geometry}
-    position={[-0.259, 3.092, -0.422]}
-    rotation={[-2.213, -0.437, 0.679]}
-    scale={13.749}
+name="PERT"
+          castShadow
+          receiveShadow
+          geometry={nodes.PERT.geometry}
+          material={materials['Material.046']}
+          position={[0.879, 2.953, 0.033]}
+          rotation={[-0.643, 0.467, -2.407]}
+          scale={15.119}
     ><TransitionMaterial {...metalProps} /></mesh>
 )}
 {showPETT && (
 <mesh
-          name="ATT"
+        name="PETT"
           castShadow
           receiveShadow
-          geometry={nodes.ATT.geometry}
-          // material={materials['Material.010']}
-          position={[-0.254, 3.129, -0.406]}
-          rotation={[-1.875, -0.199, 0.735]}
-          scale={13.778}
+          geometry={nodes.PETT.geometry}
+          material={materials['Material.047']}
+          position={[0.879, 2.961, 0.033]}
+          rotation={[-1.576, 0.289, -1.386]}
+          scale={15.119}
       ><TransitionMaterial {...metalProps} /></mesh>
-)} */}
+)} 
 
             {/* Basket, HiddenHalo */}
             {showSB && (
