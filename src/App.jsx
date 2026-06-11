@@ -11,7 +11,7 @@ function App() {
   const [circularRingSize,   setCircularRingSize]   = useState(1.5);
   const [dCaratSize,         setDCaratSize]         = useState(1);
   const [basket,             setBasket]             = useState("None");
-  const [bandShape,          setBandShape]          = useState("square");
+  const [bandShape,          setBandShape]          = useState("circle");
   const [prongCount,         setProngCount]         = useState("Classic");
   const [surpriseStone,      setSurpriseStone]      = useState("None");
   const [diamondType,        setDiamondType]        = useState("AsscherDiamond");

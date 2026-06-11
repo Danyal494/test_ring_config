@@ -28,7 +28,8 @@ const getStoneExclusions = (stoneCount) => {
 
 const PaveLength = ({
   nodes, materials, paveStyle, paveLength, stoneCount,
-  TransitionMaterial, metalProps, RefractionMaterial, showStandardSquare
+  TransitionMaterial, metalProps, RefractionMaterial, showStandardSquare,
+  bwRatio = 1,   // ← receive it with a safe default
 }) => {
   if (paveStyle !== 'PetiteFrench') return null
 
@@ -81,13 +82,13 @@ const PaveLength = ({
       {groupData
         .filter(({ num }) => isVisible(num, visibilityRange) && !exclusions.has(num))
         .map(({ name, pos, meshBase }) => (
-          <group
-            key={name}
-            name={name}
-            position={pos}
-            rotation={[1.57, 0.262, -Math.PI / 2]}
-            scale={[14.756, 17.456, 13.61]}
-          >
+         <group
+  key={name}
+  name={name}
+  position={pos}
+  rotation={[1.57, 0.262, -Math.PI / 2]}
+  scale={[14.756 * bwRatio, 17.456 * bwRatio, 13.61 * bwRatio]}
+>
             <mesh castShadow receiveShadow geometry={nodes[meshBase].geometry} material={materials['Diamond.007']}>
               <RefractionMaterial />
             </mesh>

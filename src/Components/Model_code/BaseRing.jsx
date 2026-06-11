@@ -8,7 +8,8 @@ import PaveLength from './SubCode/PaveLength'
 import { CathedralArm, CathedralPair } from './StoneLogic/Cathedral'
 
 const BW_DEFAULT = 2.7
-
+const SS_X_FRONT = 0.092   // was SS_Z_FRONT
+const SS_X_BACK  = 0.169   // was SS_Z_BACK
 // ─── Carat → visual scale compression ────────────────────────────────────────
 
 const CARAT_RANGE_MIN  = 1.0
@@ -105,7 +106,7 @@ paveLength = 'Half',
   const bandComfort = bandComfortProp ?? bandFit ?? 'standard'
 
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/TEST3.glb')
+  const { nodes, materials, animations } = useGLTF('/TEST4.glb')
   const { actions } = useAnimations(animations, group)
   const { scene }   = useThree()
   const [envMap, setEnvMap] = useState(scene.environment)
@@ -128,6 +129,9 @@ paveLength = 'Half',
     orientation === 'Kite'     ? Math.PI / 4.2 : 0
 
   const bwRatio = bandWidth / BW_DEFAULT
+const ssXFront = SS_X_FRONT - (bandWidth - BW_DEFAULT) * 0.026  // moves left (away)
+const ssXBack  = SS_X_BACK  + (bandWidth - BW_DEFAULT) * 0.026 
+const showSurprise = surpriseStone !== 'None'
 
   const metalProps = {
     transitionColor: metalColor,
@@ -228,6 +232,61 @@ const isCathedralThreeStone = showCathedral && isThreeStone
             <TransitionMaterial {...metalProps} />
           </mesh>
         )}
+
+{showSurprise && (
+   <>
+<group
+          name="Frontsurpisestone"
+          position={[ssXFront, 2.293, 0.016]}
+          rotation={[0, -1.571, 0]}
+          scale={7.199}>
+          <mesh
+            name="SurpriseStoneDiamond"
+            castShadow
+            receiveShadow
+            geometry={nodes.SurpriseStoneDiamond.geometry}
+            // material={materials.Diamond}
+      >
+   <RefractionMat/>
+      </mesh>
+          <mesh
+            name="SurpriseStoneDiamond_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.SurpriseStoneDiamond_1.geometry}
+            material={materials.Metal}
+    >
+  <TransitionMaterial {...metalProps}/>
+    </mesh>
+        </group>
+        <group
+          name="Backsurpisestone"
+          position={[ssXBack, 2.299, 0.016]}
+          rotation={[0, 1.571, 0]}
+          scale={7.199}>
+          <mesh
+            name="SurpriseStoneDiamond001"
+            castShadow
+            receiveShadow
+            geometry={nodes.SurpriseStoneDiamond001.geometry}
+            // material={materials.Diamond}
+>
+<RefractionMat/>
+</mesh>
+          <mesh
+            name="SurpriseStoneDiamond001_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.SurpriseStoneDiamond001_1.geometry}
+            material={materials.Metal}
+   >
+  <TransitionMaterial {...metalProps}/>
+   </mesh>
+        </group>
+       </>
+)}
+
+
         {/* {showCathedral && !isThreeStone && (
   <mesh
     name="Cathedral"
@@ -251,11 +310,12 @@ const isCathedralThreeStone = showCathedral && isThreeStone
   materials={materials}
   paveStyle={paveStyle}
   paveLength={paveLength}
-  stoneCount={stoneCount}              // ← add this
+  stoneCount={stoneCount}
   TransitionMaterial={TransitionMaterial}
   RefractionMaterial={RefractionMat}
   metalProps={metalProps}
   showStandardSquare={showStandardSquare}
+  bwRatio={bwRatio}   // ← add this
 />
 
 
@@ -315,4 +375,4 @@ const isCathedralThreeStone = showCathedral && isThreeStone
   )
 }
 
-useGLTF.preload('/TEST3.glb')
+useGLTF.preload('/TEST4.glb')
