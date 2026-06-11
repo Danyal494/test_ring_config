@@ -141,12 +141,12 @@ export default function ThreeStone({
   return (
     <>
    
-      <ThreeStoneLevaPanel
+      {/* <ThreeStoneLevaPanel
         key={`th-${caratSize}-${effectiveSideCarat.toFixed(3)}`}
         caratSize={caratSize}
         sideCaratSize={effectiveSideCarat}
         onUpdate={setTransforms}
-      />
+      /> */}
 
   
       <DiamondByType
