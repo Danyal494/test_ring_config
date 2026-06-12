@@ -106,7 +106,7 @@ paveLength = 'Half',
   const bandComfort = bandComfortProp ?? bandFit ?? 'standard'
 
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/TEST4.glb')
+  const { nodes, materials, animations } = useGLTF('/TEST5.glb')
   const { actions } = useAnimations(animations, group)
   const { scene }   = useThree()
   const [envMap, setEnvMap] = useState(scene.environment)
@@ -285,7 +285,18 @@ const isCathedralThreeStone = showCathedral && isThreeStone
         </group>
        </>
 )}
-
+   <mesh
+        name="Cathedral"
+        castShadow
+        receiveShadow
+        geometry={nodes.Cathedral.geometry}
+        material={nodes.Cathedral.material}
+        position={[0.128, 2.342, -0.546]}
+        rotation={[0.016, 1.571, 0]}
+        scale={[0.548, 0.548, 0.467]}
+   >
+  <TransitionMaterial {...metalProps}/>
+   </mesh>
 
         {/* {showCathedral && !isThreeStone && (
   <mesh
@@ -375,4 +386,4 @@ const isCathedralThreeStone = showCathedral && isThreeStone
   )
 }
 
-useGLTF.preload('/TEST4.glb')
+useGLTF.preload('/TEST5.glb')

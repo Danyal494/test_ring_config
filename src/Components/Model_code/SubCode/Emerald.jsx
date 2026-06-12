@@ -21,6 +21,11 @@ const showERT  = showTip && prongTips === 'Rounded'
 const showEPCT = showTip && prongTips === 'PetiteClaw'
 const showETT  = showTip && prongTips === 'Tab'
 
+const showEHCT  = isHalo && prongTips === 'Claw'
+const showEHRT  = isHalo && prongTips === 'Rounded'
+const showEHPCT = isHalo && prongTips === 'PetiteClaw'
+const showEHTT  = isHalo && prongTips === 'Tab'
+
   const CARAT_DEFAULT = 1.5
   const scale = caratSize / CARAT_DEFAULT
 

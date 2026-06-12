@@ -21,6 +21,11 @@ const showRART  = showTip && prongTips === 'Rounded'
 const showRAPCT = showTip && prongTips === 'PetiteClaw'
 const showRATT  = showTip && prongTips === 'Tab'
 
+const showRAHCT  = isHalo && prongTips === 'Claw'
+const showRAHRT  = isHalo && prongTips === 'Rounded'
+const showRAHPCT = isHalo && prongTips === 'PetiteClaw'
+const showRAHTT  = isHalo && prongTips === 'Tab'
+
   const cx = 0.135
   const cy = 2.626
   const cz = -0.01

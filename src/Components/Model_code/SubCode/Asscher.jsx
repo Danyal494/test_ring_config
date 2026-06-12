@@ -21,6 +21,14 @@ const showART  = showTip && prongTips === 'Rounded'
 const showAPCT = showTip && prongTips === 'PetiteClaw'
 const showATT  = showTip && prongTips === 'Tab'
 
+// Halo tip sub-rules — halo gate AND prongTips value
+const showAHCT  = isHalo && prongTips === 'Claw'
+const showAHRT  = isHalo && prongTips === 'Rounded'
+const showAHPCT = isHalo && prongTips === 'PetiteClaw'
+const showAHTT  = isHalo && prongTips === 'Tab'
+
+
+
   const cx = 0.135
   const cy = 2.626
   const cz = -0.01
@@ -234,6 +242,7 @@ const showATT  = showTip && prongTips === 'Tab'
            <TransitionMaterial {...metalProps} />
         </mesh>
       </group>
+      {showAHCT && (
       <mesh
         name="AHCT"
           castShadow
@@ -246,6 +255,69 @@ const showATT  = showTip && prongTips === 'Tab'
       >
          <TransitionMaterial {...metalProps} />
       </mesh>
+      )}
+
+
+ <mesh
+        name="AHCLP"
+        castShadow
+        receiveShadow
+        geometry={nodes.AHCLP.geometry}
+        material={nodes.AHCLP.material}
+        position={[0.137, 2.586, -0.103]}
+        rotation={[-Math.PI, 0.254, Math.PI / 2]}
+        scale={0.146}
+>
+ <TransitionMaterial {...metalProps} />
+</mesh>
+    
+{showAHPCT && (
+      <mesh
+        name="AHPCT"
+        castShadow
+        receiveShadow
+        geometry={nodes.AHPCT.geometry}
+        material={materials['Material.036']}
+        position={[0.537, 3.108, 0.404]}
+        rotation={[-1.424, 0.109, -2.347]}
+        scale={16.349}
+     >
+ <TransitionMaterial {...metalProps} />
+     </mesh>
+          )}
+
+{showAHRT && (
+      <mesh
+        name="AHRT"
+        castShadow
+        receiveShadow
+        geometry={nodes.AHRT.geometry}
+        material={materials['Material.060']}
+        position={[0.537, 3.108, 0.404]}
+        rotation={[-1.424, 0.109, -2.347]}
+        scale={16.349}
+   >
+ <TransitionMaterial {...metalProps} />
+   </mesh>
+        )}
+        {showAHTT && (
+      <mesh
+        name="AHTT"
+        castShadow
+        receiveShadow
+        geometry={nodes.AHTT.geometry}
+        material={materials['Material.061']}
+        position={[0.537, 3.108, 0.404]}
+        rotation={[-1.424, 0.109, -2.347]}
+        scale={16.349}
+>
+   <TransitionMaterial {...metalProps} />
+</mesh>
+
+     )}
+
+
+
       <mesh
          name="AHCLP"
           castShadow
