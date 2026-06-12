@@ -285,18 +285,7 @@ const isCathedralThreeStone = showCathedral && isThreeStone
         </group>
        </>
 )}
-   <mesh
-        name="Cathedral"
-        castShadow
-        receiveShadow
-        geometry={nodes.Cathedral.geometry}
-        material={nodes.Cathedral.material}
-        position={[0.128, 2.342, -0.546]}
-        rotation={[0.016, 1.571, 0]}
-        scale={[0.548, 0.548, 0.467]}
-   >
-  <TransitionMaterial {...metalProps}/>
-   </mesh>
+   
 
         {/* {showCathedral && !isThreeStone && (
   <mesh
@@ -313,9 +302,21 @@ const isCathedralThreeStone = showCathedral && isThreeStone
 {/* <CathedralArm side="left" material={<TransitionMaterial {...metalProps} />} /> */}
 
 // After
-{/* {showCathedral && !isTwoStone && (
-  <CathedralPair material={<TransitionMaterial {...metalProps} />} />
-)} */}
+{showCathedral && !isTwoStone && (
+<mesh
+        name="Cathedral"
+        castShadow
+        receiveShadow
+        geometry={nodes.Cathedral.geometry}
+        material={nodes.Cathedral.material}
+        position={[0.128, 2.342, -0.546]}
+        rotation={[0.016, 1.571, 0]}
+        scale={[0.548, 0.548, 0.467]}
+   >
+  <TransitionMaterial {...metalProps}/>
+   </mesh>
+  // <CathedralPair material={<TransitionMaterial {...metalProps} />} />
+)}
 <PaveLength
   nodes={nodes}
   materials={materials}
