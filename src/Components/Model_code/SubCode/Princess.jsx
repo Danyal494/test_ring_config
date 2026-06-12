@@ -15,6 +15,11 @@ const showBBCLP = isBezel
 const showHHD   = isHiddenHalo
 const showHalo  = isHalo
 
+const showPHCT  = isHalo && prongTips === 'Claw'
+const showPHRT  = isHalo && prongTips === 'Rounded'
+const showPHPCT = isHalo && prongTips === 'PetiteClaw'
+const showPHTT  = isHalo && prongTips === 'Tab'
+
 // prongTip sub-rules — basket gate (showTip) AND prongTips value
 const showPCT  = showTip && prongTips === 'Claw'
 const showPRT  = showTip && prongTips === 'Rounded'

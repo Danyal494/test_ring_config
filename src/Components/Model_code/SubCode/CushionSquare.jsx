@@ -15,6 +15,11 @@ const showBBCLP = isBezel
 const showHHD   = isHiddenHalo
 const showHalo  = isHalo
 
+const showCHCT  = isHalo && prongTips === 'Claw'
+const showCHRT  = isHalo && prongTips === 'Rounded'
+const showCHPCT = isHalo && prongTips === 'PetiteClaw'
+const showCHTT  = isHalo && prongTips === 'Tab'
+
 // prongTip sub-rules — basket gate (showTip) AND prongTips value
 const showCCT  = showTip && prongTips === 'Claw'
 const showCRT  = showTip && prongTips === 'Rounded'
@@ -234,6 +239,7 @@ const showCTT  = showTip && prongTips === 'Tab'
  <TransitionMaterial {...metalProps} />
 </mesh>
       </group>
+{showCHCT && (
       <mesh
        name="CHCT"
           castShadow
@@ -246,6 +252,49 @@ const showCTT  = showTip && prongTips === 'Tab'
    >
  <TransitionMaterial {...metalProps} />
 </mesh>
+)}
+
+{showCHPCT && (
+  <mesh  name="CHPCT001"
+        castShadow
+        receiveShadow
+        geometry={nodes.CHPCT001.geometry}
+        material={materials['Material.065']}
+        position={[0.532, 3.153, 0.543]}
+        rotation={[-1.104, 0.414, -2.326]}
+        scale={17.94} >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)}
+
+{showCHRT && (
+ <mesh
+        name="CHRT001"
+        castShadow
+        receiveShadow
+        geometry={nodes.CHRT001.geometry}
+        material={materials['Material.066']}
+        position={[0.562, 3.111, -0.403]}
+        rotation={[-1.104, 0.414, -2.326]}
+        scale={17.94}
+      >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)}
+
+{showCHTT && (
+  <mesh  name="CHTT001"
+        castShadow
+        receiveShadow
+        geometry={nodes.CHTT001.geometry}
+        material={materials['Material.067']}
+        position={[0.54, 3.161, 0.541]}
+        rotation={[-1.104, 0.414, -2.326]}
+        scale={17.94} >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)}
+
               </>
             )}
 

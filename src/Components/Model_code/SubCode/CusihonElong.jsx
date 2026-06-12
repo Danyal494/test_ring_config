@@ -15,6 +15,12 @@ const showBBCLP = isBezel
 const showHHD   = isHiddenHalo
 const showHalo  = isHalo
 
+
+const showCEHCT  = isHalo && prongTips === 'Claw'
+const showCEHRT  = isHalo && prongTips === 'Rounded'
+const showCEHPCT = isHalo && prongTips === 'PetiteClaw'
+const showCEHTT  = isHalo && prongTips === 'Tab'
+
 // prongTip sub-rules — basket gate (showTip) AND prongTips value
 const showCECT  = showTip && prongTips === 'Claw'
 const showCERT  = showTip && prongTips === 'Rounded'
@@ -201,6 +207,8 @@ const effectiveOrientationZ = orientationZ - Math.PI / 2
    >
  <TransitionMaterial {...metalProps} />
 </mesh>
+
+{showCEHCT && (
       <mesh
         name="CEHCT"
           castShadow
@@ -215,6 +223,27 @@ const effectiveOrientationZ = orientationZ - Math.PI / 2
    >
  <TransitionMaterial {...metalProps} />
 </mesh>
+)}
+
+{/* {showCEHPCT && (
+  <mesh name="AHPCT" ... >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)}
+
+{showCEHRT && (
+  <mesh name="AHRT" ... >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)}
+
+{showCEHTT && (
+  <mesh name="AHTT" ... >
+    <TransitionMaterial {...metalProps} />
+  </mesh>
+)} */}
+
+
       <group
        name="CEHD"
           position={[0.307, 2.893, 0.486]}
